@@ -1,0 +1,259 @@
+---
+title: "Trabajo Final R - María Angélica Benítez"
+date: "2022-08-29"
+output:
+  html_document:
+    theme: cerulean
+    toc: true
+    toc_float: true
+---
+
+**Docentes:** Ignacio Spiousas y Pablo Etchemendy
+
+::: pull-right
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3G5NiJaHiqVIUT9vgz4RcCKvlyeaf5eMu7BtYPWYY&amp;s"/>
+:::
+
+------------------------------------------------------------------------
+
+<br> <br>
+
+### **Abstract**
+
+Diferentes tratamientos ambientales tienen la capacidad de influir y modificar las funciones cognitivas en los seres humanos. Este fenómeno es conocido como modulación cognitiva. Según las investigaciones en el área de las neurociencias de la música, el entrenamiento musical, realizado sistemáticamente, estimula la plasticidad sináptica, observable en diferencias anatómicas, funcionales y comportamentales. Las investigaciones que vinculan la formación musical y la modulación de funciones cognitivas han encontrado diferencias significativas en áreas relacionadas a la memoria, en músicos adultos. Sin embargo, esta función cognitiva ha sido poco estudiada en adolescentes. El objetivo de este análisis es observar los resultados de un estudio que indaga la relación entre la formación musical y la memoria adolescente. Para ello, se comparó el desempeño de adolescentes de 12 a 15 años formados en conservatorios argentinos en diferentes especialidades (violín, piano, guitarra, canto, violoncello, corno francés, viola, batería y percusión) durante un promedio de 1.2 años con adolescentes sin este tipo de formación en una tarea de memoria basada en el Sistema Internacional de Imágenes Afectivas. Se seleccionaron 108 imágenes apropiadas para adolescentes y se los evaluó en su recuerdo libre antes de comenzar con la formación y al año de haber comenzado la misma. Los resultados mostraron en primer lugar que no se hallaron diferencias significativas entre los grupos en la línea de base, sin embargo, se encontró que, al finalizar el entrenamiento, los músicos recordaron una mayor cantidad de imágenes que los adolescentes sin formación musical. Los resultados de este análisis deben ser interpretados como una oportunidad para reflexionar sobre las prácticas apropiadas en la enseñanza de la música en el contexto escolar. Además, permiten pensar que las intervenciones que utilizan a la música como recurso podrían ser de especial importancia para el tratamiento de los adolescentes con trastorno del desarrollo y con enfermedades neurológicas.
+
+> *Palabras claves:* memoria, adolescentes, músicos, no músicos.
+
+<br>
+
+### **Introducción**
+
+|La literatura científica sugiere que el entrenamiento musical influye sobre diversas habilidades humanas (Merrett et al., 2013). Esto se evidencia no sólo en las habilidades relacionadas con las destrezas musicales, fenómeno conocido como transferencia cercana de conocimiento, sino también como en las no relacionadas, lo que equivale a una transferencia lejana en términos de desarrollo cognitivo (Li et al., 2008). Sin embargo, aún no está claro en qué medida la duración del entrenamiento contribuye a los beneficios de esta actividad en el desarrollo humano. El entrenamiento musical involucra procesos de atención sostenida, de repetición, de memoria a corto y largo plazo, por ende este tipo de formación impactaría en la memoria adolescente (Kausel et al., 2020; Price-Mohr y Price, 2021; Saarikivi et al., 2019; Wilbiks y Hutchins, 2020). En esta línea, se halló que los adolescentes con formación musical tendrían un desarrollo más pronunciado de la memoria de trabajo tanto visoespacial como verbal (Bergman Nutley et al., 2014). Sin embargo, la relación entre el entrenamiento musical y la memoria visual de adolescentes con y sin formación musical aún no ha sido investigada. El objetivo de este análisis es observar los resultados de un estudio que indaga la relación entre la experiencia musical de adolescentes y la memoria.
+
+<br>
+
+### **Materiales y método**
+
+#### **Muestra**
+
+|Participaron 20 adolescentes sin diagnóstico de patología escolarizados en diferentes colegios de Argentina. Veinte de ellos comenzaron un entrenamiento musical en diferentes conservatorios de música de Argentina o ingresaron en el Sistema de Orquestas y Coros Infantiles y Juveniles del mismo país. Los otros veinte participantes no estuvieron involucrados en ningún tipo de programa de formación musical.
+
+#### **Materiales**
+
+|Se seleccionaron 108 imagenes apropiadas para adolescentes del Sistema Internacional de Imágenes Afectivas (Lang et al., 1995). Las imágenes fueron presentadas mediante Microsoft Power Point en un monitor de 14''. Los adolescentes estaban sentados aproximadamente a 60cm de la computadora.
+
+#### **Procedimiento**
+
+|El estudio tuvo tres fases las cuales comenzaron luego de tener los consentimientos firmados por los padres y/o tutores de los participantes. Además, contamos con el asentimiento cada adolescente participante. En la primera fase, llamada línea de base (LB), se evaluó la memoria para establecer una medida pre intervención. La segunda fase consistió en las clases de música durante un período de 1 año aproximadamente (intervención, para el grupo tratamiento, con formación musical). Posteriormente, comenzó la tercera fase, donde volvió a evaluarse la memoria (medida post intervención). Por otro lado, cabe mencionar, que el grupo control fué evaluado en las mismas ventanas de tiempo que el grupo experimental, empero, a este no se le realizó ningún tipo de intervención.
+
+### **Análisis de datos**
+
+Hola! ![](https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Emoji_u1f44b.svg/480px-Emoji_u1f44b.svg.png){width="20"}
+
+Les cuento un poco lo que fuí haciendo en el análisis de datos.
+
+Comencé con un análisis exploratorio de los datos ![](https://images.emojiterra.com/google/android-10/512px/1f50d.png){width="20"}
+
+Luego, probé ajustar modelos. El modelo lineal normal no me pareció una buena opción porque se violaban muchos supuestos. Entonces, la opción a eso fué un modelo generalizado con distribución binomial negativa (que entiendo se usa para este tipo de variable respuesta, que es de conteo). Aplicando este modelo, no se obtuvieron diferencias significativas ni entre tiempo pre-pos ni entre tratamientos.
+
+Lo que se ve en el gráfico de cajas es que la respuesta post del control es muy variable, hay muchos adolescentes que recuerdan más imagenes y muchos que no recuerda ninguna. Eso hace que el efecto se vea diluido y no haya diferencias. En cambio en el tratamiento experimental hay muchos adolescentes que recuerdan la misma cantidad y algunos recuerdan un poco más, pero nunca menos. Lo que probé hacer acá también es un test de friedman para datos pareados (que entiendo sería la alternativa no parametrica al modelo de medidas repetidas). Lo que hice fue dividir la tabla en "CONTROL" por un lado y "EXPERIMENTAL" por otro. A cada uno de estos subsets le aplique un friedman. En el caso del control no dieron diferencias y en el caso del tratamiento experimental sí (aunque cabe aclarar que la diferencia es muy baja). Después apliqué otro no paramétrico para ver si daban diferencias entre los post de ambos tratamientos pero no se encontraron diferencias.
+
+```{r echo=TRUE}
+#Importamos base de datos en R Markdown-----
+library(readxl)
+Datos_para_R <- read_excel("~/Datos para R.xlsx")
+Datos_para_R
+```
+
+
+```{r echo = FALSE}
+
+library(tidyverse)
+library(readxl)
+library(rstatix)
+library(lme4)
+library(emmeans)
+library(ggeffects)
+library(performance)
+library(PMCMRplus)
+library(XLConnect)
+library(skimr)
+library(ggplot2)
+library(DataExplorer)
+```
+
+
+### *Análisis exploratorio de datos*
+### *Ploteo básico*
+```{r echo = TRUE}
+str(Datos_para_R)
+summary(Datos_para_R)
+glimpse(Datos_para_R)
+```
+
+### *Datos faltantes*
+```{r echo=TRUE}
+plot_missing(Datos_para_R)
+```
+
+### *Histograma*
+```{r echo=TRUE}
+plot_histogram(Datos_para_R)
+
+```
+
+### *Reporte con Data Explorer*
+```{r, echo=FALSE}
+
+DataExplorer::create_report(Datos_para_R)
+```
+### *Datos*
+```{r, echo=TRUE}
+
+#Ordenamos la tabla con los datos----
+
+datos <- Datos_para_R %>%
+  mutate(individuo = row_number(),
+         .before = 1) %>% 
+  pivot_longer(2:5,
+               names_to = "grupo",
+               values_to = "valor") %>%
+  separate(2, 
+           into = c("tiempo", "tratamiento"),
+           sep = "-") %>%
+  mutate(tiempo = factor(tiempo, ordered = T, levels = c("PRE", "POST"))) %>%
+  mutate(individuo = ifelse(tratamiento == "CONTROL",
+                            individuo + 20,
+                            individuo))
+  
+```
+
+```{r echo=TRUE}
+#Creamos una tabla resumen----
+
+datos %>% 
+  group_by(tiempo, tratamiento) %>%
+  summarise(media = mean(valor, na.rm = T),
+            desvest = sd(valor, na.rm = T),
+            mediana = median(valor, na.rm = T),
+            min = min(valor, na.rm = T),
+            max = max(valor, na.rm = T)) %>%
+  writeWorksheetToFile(file = "Resultados.xlsx",
+                       data = .,
+                       sheet = "Resumen")
+
+
+```
+
+
+|Tiempo|Tratamiento |Media|Desvest|Mediana|Min|Max|
+|:----:|:----------:|:---:|:-----:|:-----:|:-:|:-:|
+|PRE   |Control     |9,85 |4,96594|9      |4  |24 |
+|PRE   |Experimental|9,55 |3,06894|9,5    |5  |18 |
+|POST  |Control     |11,15|7,20580|11     |0  |24 |
+|POST  |Experimental|10,7 |3,34191|10     |5  |18 |
+
+```{r echo=TRUE}
+
+#Construimos el gráfico
+
+datos %>%
+  ggplot(aes(x = tiempo, y = valor, fill = tiempo)) +
+  geom_boxplot(size = 1, col = "black") +
+  geom_point() +
+  geom_path(aes(group = individuo), linetype = "dashed") +
+  facet_wrap(~tratamiento) +
+  theme_bw() +
+  labs(y = "Nro de imagenes recordadas", x = "Tiempo") 
+
+#Guardé plot 
+ggsave("Grafico de cajas.png",
+       width = 15,
+       height = 14,
+       units = "cm")
+
+```
+
+```{r echo=TRUE}
+#Realizamos el Test de friedman tanto para experimental como para control
+
+datos %>%
+  filter(tratamiento == "EXPERIMENTAL") %>%
+  friedman_test(valor ~ tiempo | individuo)%>%
+  writeWorksheetToFile(file = "Resultados.xlsx",
+                       data = .,
+                       sheet = "FriedmanEXP")
+```
+
+|.Y.  |n  |Statistic|df |p     |Method        |
+|:---:|:-:|:-------:|:-:|:----:|:------------:|
+|Valor|20 |4        |1  |0,0455|Friedman Test |
+
+```{r echo=TRUE}
+datos %>%
+  filter(tratamiento == "CONTROL") %>%
+  friedman_test(valor ~ tiempo | individuo)%>%
+  writeWorksheetToFile(file = "Resultados.xlsx",
+                       data = .,
+                       sheet = "FriedmanCON")
+
+```
+
+|.Y.  |n  |Statistic|df |p     |Method        |
+|:---:|:-:|:-------:|:-:|:----:|:------------:|
+|Valor|20 |4        |1  |0,0655|Friedman Test |
+
+```{r echo=TRUE}
+#Valor W de Kendall tanto para experimental como para control
+
+datos %>%
+  filter(tratamiento == "EXPERIMENTAL") %>%
+  friedman_effsize(valor ~ tiempo | individuo)%>%
+  writeWorksheetToFile(file = "Resultados.xlsx",
+                       data = .,
+                       sheet = "KendallEXP")
+```
+
+|.Y.  |n  |Effsize|Method    |Magnitude|
+|:---:|:-:|:-----:|:--------:|:-------:|
+|Valor|20 |0,2    |Kendall W |Small    |
+
+```{r echo=TRUE}
+datos %>%
+  filter(tratamiento == "CONTROL") %>%
+  friedman_effsize(valor ~ tiempo | individuo)%>%
+  writeWorksheetToFile(file = "Resultados.xlsx",
+                       data = .,
+                       sheet = "KendallCONT")
+```
+
+|.Y.  |n  |Effsize|Method    |Magnitude|
+|:---:|:-:|:-----:|:--------:|:-------:|
+|Valor|20 |0,1    |Kendall W |Small    |
+
+```{r echo=TRUE}
+#Comparamos entre tratamientos post
+
+datos %>%
+  filter(tiempo == "POST") %>%
+  wilcox_test(valor~tratamiento)%>%
+  writeWorksheetToFile(file = "Resultados.xlsx",
+                       data = .,
+                       sheet = "WilcoxPOST")
+
+```
+
+|.Y.  |Group1 |Group2      |n1 |n2 |Statistic|p|
+|:---:|:-----:|:----------:|:-:|:-:|:---------:|
+|Valor|Control|Experimental|20 |20 |218,5|0,625|
+
+```{r echo=TRUE}
+#Les dejo también, por las dudas, el modelo binomial negativo
+
+modelo <- glmer.nb(valor ~ tiempo+tratamiento + (1|individuo),
+                   data = datos)
+summary(modelo)
+emmeans::emmeans(modelo, list(pairwise ~ tratamiento))
+ggpredict(modelo, c("tiempo", "tratamiento"), type = "fixed") %>% plot(add.data = T)
+
+```
